@@ -23,8 +23,6 @@ void setup() {
   for (int i = 0; i < 4; i++) {
     pinMode(relayPins[i], OUTPUT);
 
-    // Relay OFF initially
-    digitalWrite(relayPins[i], HIGH);
   }
 
   // INA219 initialization
@@ -52,21 +50,7 @@ void loop() {
   // Cumulative switching with NC connections
   if (stage != previousStage) {
 
-    for (int i = 0; i < 4; i++) {
 
-      if (i < stage) {
-        // Selected LED: Relay ON
-        // NC opens, so LED turns OFF.
-        digitalWrite(relayPins[i], LOW);
-      }
-      else {
-        // Unselected LED: Relay OFF
-        // NC closes, so LED turns ON.
-        digitalWrite(relayPins[i], HIGH);
-      }
-    }
-
-    previousStage = stage;
   }
 
   // INA219 readings
